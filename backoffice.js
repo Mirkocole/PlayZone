@@ -7,8 +7,18 @@ const description = document.getElementById('input-description');
 const brand = document.getElementById('input-brand');
 const imgUrl = document.getElementById('input-imgUrl');
 const price = document.getElementById('input-price');
-const btnCreateProduct = document.getElementById('btnCreateProduct');
-const alertCreateProduct = document.getElementById('alertCreateProduct');
+// const btnAction = document.getElementById('btnCreateProduct');
+const alertAction = document.getElementById('alertCreateProduct');
+
+
+// Inputs Form Edit Product
+const productNameEdit = document.getElementById('edit-name');
+const descriptionEdit = document.getElementById('edit-description');
+const brandEdit = document.getElementById('edit-brand');
+const imgUrlEdit = document.getElementById('edit-imgUrl');
+const priceEdit = document.getElementById('edit-price');
+const btnActionEdit = document.getElementById('edit-btn');
+const alertActionEdit = document.getElementById('alertActionEdit');
 
 // Table results
 const tableResults = document.getElementById('listProducts');
@@ -32,12 +42,13 @@ async function addProduct() {
             });
 
         if (res.status == 200) {
-            console.log(res.status)
-            alertCreateProduct.classList.toggle('d-none');
+            console.log(res.status);
+            alertAction.innerText = 'Prodotto caricato con successo!';
+            alertAction.classList.toggle('d-none');
             showProducts();
 
             setTimeout(() => {
-                alertCreateProduct.classList.toggle('d-none');
+                alertAction.classList.toggle('d-none');
             }, 5000)
         }else{
             // INSERIRE CONTROLLO INPUT
@@ -115,6 +126,26 @@ function createTableRow(product) {
             deleteProduct(product._id);
         })
 
+        // Azione Edit
+        btnEdit.setAttribute('data-bs-toggle','modal');
+        btnEdit.setAttribute('data-bs-target','#modalEdit');
+        btnEdit.addEventListener('click',()=>{
+            productNameEdit.value = product.name;
+            descriptionEdit.value = product.description;
+            brandEdit.value = product.brand;
+            imgUrlEdit.value = product.imageUrl;
+            priceEdit.value = product.price;
+
+            btnActionEdit.addEventListener('click',()=>{
+                product.name = productNameEdit.value;
+                product.description = descriptionEdit.value;
+                product.brand = brandEdit.value;
+                product.imageUrl = imgUrlEdit.value;
+                product.price = priceEdit.value;
+                editProduct(product);
+            })
+        })
+
 
         // Collegamento Nodi
         colActions.append(btnEdit,btnDelete);
@@ -123,5 +154,30 @@ function createTableRow(product) {
         tableResults.appendChild(row);
 }
 
+
+async function editProduct(product){
+    try {
+        let res = await fetch('https://striveschool-api.herokuapp.com/api/product/'+product._id,
+            {
+                headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + token },
+                body: JSON.stringify(product),
+                method: "PUT"
+            });
+
+        if (res.status == 200) {
+            console.log(res.status)
+            alertActionEdit.classList.toggle('d-none');
+            showProducts();
+
+            setTimeout(() => {
+                alertActionEdit.classList.toggle('d-none');
+            }, 5000);
+        }else{
+            // INSERIRE CONTROLLO INPUT
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 window.onload = showProducts();

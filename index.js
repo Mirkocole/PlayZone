@@ -47,7 +47,7 @@ function createCard(product){
     cardBrand.classList = ['card-text fw-5 d-block'];
     cardPrice.classList = ['card-text text-danger d-block fs-4'];
     cardBtn.classList = ['mt-4'];
-    cardBtn.href = '#';
+    cardBtn.href = 'dettagli.html?id='+product._id;
 
 
     // Valorizzo i nodi

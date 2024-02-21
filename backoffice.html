@@ -51,12 +51,12 @@
         <!-- Modal Create Product -->
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAdd">
             Crea Prodotto
         </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Modal Add-->
+        <div class="modal fade" id="modalAdd" tabindex="-1" aria-labelledby="modalAddLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -94,7 +94,7 @@
                                 placeholder="Insert your product price" aria-label="Username"
                                 aria-describedby="basic-addon1">
                         </div>
-                        
+
 
                         <div class="alert alert-success d-none" role="alert" id="alertCreateProduct">
                             Prodotto caricato con successo!
@@ -116,22 +116,81 @@
             <h3 class="my-3 text-light"> Lista Prodotti </h3>
             <table class="table table-dark table-striped">
                 <thead>
-                  <tr>
-                   
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Brand</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Actions</th>
-                  </tr>
+                    <tr>
+
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Brand</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Actions</th>
+                    </tr>
                 </thead>
                 <tbody id="listProducts">
-                 
+
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="modalEditLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="modalEditLabel">Modulo Modifica Prodotto</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="col-2 input-group mb-3">
+                                        <span class="input-group-text">Name</span>
+                                        <input id="edit-name" type="text" class="form-control"
+                                            placeholder="Insert your product name" aria-label="Username"
+                                            aria-describedby="basic-addon1">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Description</span>
+                                        <input id="edit-description" type="text" class="form-control"
+                                            placeholder="Insert your product description" aria-label="Username"
+                                            aria-describedby="basic-addon1">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Brand</span>
+                                        <input id="edit-brand" type="text" class="form-control"
+                                            placeholder="Insert your product brand" aria-label="Username"
+                                            aria-describedby="basic-addon1">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Img Url</span>
+                                        <input id="edit-imgUrl" type="text" class="form-control"
+                                            placeholder="Insert your product image url" aria-label="Username"
+                                            aria-describedby="basic-addon1">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Price €</span>
+                                        <input id="edit-price" type="number" class="form-control"
+                                            placeholder="Insert your product price" aria-label="Username"
+                                            aria-describedby="basic-addon1">
+                                    </div>
+
+
+                                    <div class="alert alert-success d-none" role="alert" id="alertActionEdit">
+                                        Prodotto modificato con successo!
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="edit-btn">Modifica
+                                        Prodotto</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
                 </tbody>
-              </table>
+            </table>
         </div>
 
-        
+
     </div>
 
     <script type="text/javascript" src="backoffice.js"></script>
