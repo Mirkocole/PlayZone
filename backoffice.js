@@ -26,36 +26,42 @@ const tableResults = document.getElementById('listProducts');
 
 async function addProduct() {
 
-    let product = {
-        'name': productName.value,
-        'description': description.value,
-        'brand': brand.value,
-        'imageUrl': imgUrl.value,
-        'price': price.value
-    }
-    try {
-        let res = await fetch('https://striveschool-api.herokuapp.com/api/product/',
-            {
-                headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + token },
-                body: JSON.stringify(product),
-                method: "POST"
-            });
 
-        if (res.status == 200) {
-            console.log(res.status);
-            alertAction.innerText = 'Prodotto caricato con successo!';
-            alertAction.classList.toggle('d-none');
-            showProducts();
-
-            setTimeout(() => {
-                alertAction.classList.toggle('d-none');
-            }, 5000)
-        }else{
-            // INSERIRE CONTROLLO INPUT
+    if (productName.value && description.value && brand.value && imgUrl.value && price.value) {
+        let product = {
+            'name': productName.value,
+            'description': description.value,
+            'brand': brand.value,
+            'imageUrl': imgUrl.value,
+            'price': price.value
         }
-    } catch (error) {
-        console.log(error);
+        try {
+            let res = await fetch('https://striveschool-api.herokuapp.com/api/product/',
+                {
+                    headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + token },
+                    body: JSON.stringify(product),
+                    method: "POST"
+                });
+    
+            if (res.status == 200) {
+                console.log(res.status);
+                alertAction.innerText = 'Prodotto caricato con successo!';
+                alertAction.classList.toggle('d-none');
+                showProducts();
+    
+                setTimeout(() => {
+                    alertAction.classList.toggle('d-none');
+                }, 5000)
+            }else{
+                // INSERIRE CONTROLLO INPUT
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }else{
+        // Campi input add non completi
     }
+    
 }
 
 async function showProducts() {
@@ -156,28 +162,35 @@ function createTableRow(product) {
 
 
 async function editProduct(product){
-    try {
-        let res = await fetch('https://striveschool-api.herokuapp.com/api/product/'+product._id,
-            {
-                headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + token },
-                body: JSON.stringify(product),
-                method: "PUT"
-            });
 
-        if (res.status == 200) {
-            console.log(res.status)
-            alertActionEdit.classList.toggle('d-none');
-            showProducts();
-
-            setTimeout(() => {
+    if (productNameEdit && productNameEdit && brandEdit && imgUrlEdit && priceEdit) {
+        try {
+            let res = await fetch('https://striveschool-api.herokuapp.com/api/product/'+product._id,
+                {
+                    headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + token },
+                    body: JSON.stringify(product),
+                    method: "PUT"
+                });
+    
+            if (res.status == 200) {
+                console.log(res.status)
                 alertActionEdit.classList.toggle('d-none');
-            }, 5000);
-        }else{
-            // INSERIRE CONTROLLO INPUT
+                showProducts();
+    
+                setTimeout(() => {
+                    alertActionEdit.classList.toggle('d-none');
+                }, 5000);
+            }else{
+                // INSERIRE CONTROLLO INPUT
+            }
+        } catch (error) {
+            console.log(error);
         }
-    } catch (error) {
-        console.log(error);
+    }else{
+        // Campi input edit non completi
     }
+
+    
 }
 
 window.onload = showProducts();
