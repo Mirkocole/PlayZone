@@ -18,7 +18,7 @@ async function showProducts(){
         json.forEach(element => {
             createCard(element);
         });
-        console.log(json);
+        
     } catch (error) {
         console.log(error);
     }
@@ -38,7 +38,7 @@ function createCard(product){
     let cardBtn = document.createElement('a');
 
     // Stilizzazione Nodi
-    column.classList.add('col-12');
+    column.classList.add('col-6');
     card.classList.add('card','border','border-0');
     image.classList.add('card-img-top');
     cardBody.classList.add('card-body');
