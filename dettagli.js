@@ -38,15 +38,15 @@ function createDetail(product){
     image.src = product.imageUrl;
 
     const prodName = document.querySelector('#container-detail h4');
-    prodName.innerText = 'Name: '+product.name;
+    prodName.innerText = product.name;
 
     const prodDesc = document.querySelector('#container-detail p');
-    prodDesc.innerText = 'Description: '+product.description;
+    prodDesc.innerText = product.description;
 
     const prodBrand = document.querySelector('#brand');
-    prodBrand.innerText = 'Brand: '+product.brand;
+    prodBrand.innerText = '© '+product.brand;
     const prodPrice = document.querySelector('#price');
-    prodPrice.innerText = `Price: ${Number(product.price).toFixed(2)}€`;
+    prodPrice.innerText = `${Number(product.price).toFixed(2)}€`;
 }
 
 

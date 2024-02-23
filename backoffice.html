@@ -20,7 +20,7 @@
     <!-- Navbar Desktop-->
     <nav class="navbar navbar-expand-lg shadow sticky-top" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.html">
                 <img src="assets/logo-retina.png" alt="" id="logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -45,7 +45,7 @@
         </div>
     </nav>
 
-    <div class="container mt-3">
+    <div class="container my-3">
         <h2 class="text-light">Back Office</h2>
 
         <!-- Modal Create Product -->
@@ -95,7 +95,12 @@
                                 aria-describedby="basic-addon1">
                         </div>
 
+                        <!-- Spinner di caricamento -->
+                        <div class="spinner-border text-primary d-none" role="status" id="spinnerAdd">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
 
+                        <!-- Alert di conferma prodotto aggiunto -->
                         <div class="alert alert-success d-none" role="alert" id="alertCreateProduct">
                             Prodotto caricato con successo!
                         </div>
@@ -111,8 +116,7 @@
 
 
         <!-- Tabella risultati -->
-
-        <div class="container mt-5">
+        <div class="container my-5 p-0">
             <h3 class="my-3 text-light"> Lista Prodotti </h3>
             <table class="table table-dark table-striped">
                 <thead>
@@ -171,7 +175,12 @@
                                             aria-describedby="basic-addon1">
                                     </div>
 
+                                    <!-- Spinner di modifica -->
+                                    <div class="spinner-border text-primary d-none" role="status" id="spinnerEdit">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
 
+                                    <!-- Alert Modifica -->
                                     <div class="alert alert-success d-none" role="alert" id="alertActionEdit">
                                         Prodotto modificato con successo!
                                     </div>
@@ -190,8 +199,11 @@
             </table>
         </div>
 
-
     </div>
+
+    <!-- <footer class="container bg-dark my-4 py-3 d-flex flex-row justify-content-center align-items-center">
+        <p class="text-center text-light">© PLAY Zone 2024</p>
+    </footer> -->
 
     <script type="text/javascript" src="backoffice.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

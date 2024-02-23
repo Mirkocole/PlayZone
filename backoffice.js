@@ -20,6 +20,10 @@ const priceEdit = document.getElementById('edit-price');
 const btnActionEdit = document.getElementById('edit-btn');
 const alertActionEdit = document.getElementById('alertActionEdit');
 
+// Spinners
+const spinnerAdd = document.getElementById('spinnerAdd');
+const spinnerEdit = document.getElementById('spinnerEdit');
+
 // Table results
 const tableResults = document.getElementById('listProducts');
 
@@ -36,15 +40,19 @@ async function addProduct() {
             'price': price.value
         }
         try {
+            spinnerAdd.classList.toggle('d-none');
             let res = await fetch('https://striveschool-api.herokuapp.com/api/product/',
                 {
                     headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + token },
                     body: JSON.stringify(product),
                     method: "POST"
                 });
+
+                
     
             if (res.status == 200) {
-                console.log(res.status);
+                spinnerAdd.classList.toggle('d-none');
+
                 alertAction.innerText = 'Prodotto caricato con successo!';
                 alertAction.classList.toggle('d-none');
                 showProducts();
@@ -57,6 +65,7 @@ async function addProduct() {
             }
         } catch (error) {
             console.log(error);
+            spinnerAdd.classList.toggle('d-none');
         }
     }else{
         // Campi input add non completi
@@ -165,6 +174,7 @@ async function editProduct(product){
 
     if (productNameEdit && productNameEdit && brandEdit && imgUrlEdit && priceEdit) {
         try {
+            spinnerEdit.classList.toggle('d-none');
             let res = await fetch('https://striveschool-api.herokuapp.com/api/product/'+product._id,
                 {
                     headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + token },
@@ -173,7 +183,8 @@ async function editProduct(product){
                 });
     
             if (res.status == 200) {
-                console.log(res.status)
+                spinnerEdit.classList.toggle('d-none');
+
                 alertActionEdit.classList.toggle('d-none');
                 showProducts();
     
@@ -185,6 +196,7 @@ async function editProduct(product){
             }
         } catch (error) {
             console.log(error);
+            spinnerEdit.classList.toggle('d-none');
         }
     }else{
         // Campi input edit non completi

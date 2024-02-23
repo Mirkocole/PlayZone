@@ -35,3 +35,8 @@ nav.navbar{
 div.carousel-item img{
     filter: brightness(70%)
 }
+
+
+table{
+    overflow: scroll!important;
+}
