@@ -126,6 +126,7 @@ function createTableRow(product) {
         colId.scope = 'row';
         btnEdit.classList = ['btn btn-primary me-2 mb-2'];
         btnDelete.classList = ['btn btn-outline-danger mb-2'];
+        colDescription.colSpan = '4';
 
         // Valorizzazione Nodi
         colId.innerText = product._id;
