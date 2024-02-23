@@ -41,9 +41,9 @@ function createCard(product){
     column.classList.add('col-6');
     card.classList.add('card','border','border-0');
     image.classList.add('card-img-top');
-    cardBody.classList.add('card-body');
+    cardBody.classList=['card-body d-flex flex-column justify-content-evenly'];
     cardName.classList.add('card-title');
-    cardDescription.classList = ['card-text m-0 fs-6 fw-lighter my-2'];
+    cardDescription.classList = ['card-text m-0 fs-6 fw-lighter my-2 text-ellipse'];
     cardBrand.classList = ['card-text fw-5 d-block'];
     cardPrice.classList = ['card-text text-danger d-block fs-4'];
     cardBtn.classList = ['mt-4'];

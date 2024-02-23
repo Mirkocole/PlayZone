@@ -35,3 +35,14 @@ nav.navbar{
 div.carousel-item img{
     filter: brightness(70%)
 }
+
+
+.text-ellipse{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card{
+    height: 500px;
+}

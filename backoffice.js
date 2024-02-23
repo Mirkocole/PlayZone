@@ -20,6 +20,11 @@ const priceEdit = document.getElementById('edit-price');
 const btnActionEdit = document.getElementById('edit-btn');
 const alertActionEdit = document.getElementById('alertActionEdit');
 
+// Variabili Modale Detele
+const btnActionDelete = document.getElementById('btn-delete');
+const modalDeleteLabel = document.getElementById('modalDeleteLabel');
+
+
 // Spinners
 const spinnerAdd = document.getElementById('spinnerAdd');
 const spinnerEdit = document.getElementById('spinnerEdit');
@@ -138,9 +143,9 @@ function createTableRow(product) {
         btnDelete.innerText = 'Delete';
 
         // Azione Delete
-        btnDelete.addEventListener('click',()=>{
-            deleteProduct(product._id);
-        })
+        // btnDelete.addEventListener('click',()=>{
+        //     deleteProduct(product._id);
+        // })
 
         // Azione Edit
         btnEdit.setAttribute('data-bs-toggle','modal');
@@ -159,6 +164,16 @@ function createTableRow(product) {
                 product.imageUrl = imgUrlEdit.value;
                 product.price = priceEdit.value;
                 editProduct(product);
+            })
+        })
+        
+        // Azione Delete
+        btnDelete.setAttribute('data-bs-toggle','modal');
+        btnDelete.setAttribute('data-bs-target','#modalDelete');
+        btnDelete.addEventListener('click',()=>{
+            modalDeleteLabel.innerText = `Sei sicuro di eliminare ${product.name.toUppercase()}?`
+            btnActionDelete.addEventListener('click',()=>{
+                deleteProduct(product._id);
             })
         })
 
