@@ -7,6 +7,7 @@ const description = document.getElementById('input-description');
 const brand = document.getElementById('input-brand');
 const imgUrl = document.getElementById('input-imgUrl');
 const price = document.getElementById('input-price');
+const alertErrorCreate = document.getElementById('alertErrorCreate');
 // const btnAction = document.getElementById('btnCreateProduct');
 const alertAction = document.getElementById('alertCreateProduct');
 
@@ -19,6 +20,7 @@ const imgUrlEdit = document.getElementById('edit-imgUrl');
 const priceEdit = document.getElementById('edit-price');
 const btnActionEdit = document.getElementById('edit-btn');
 const alertActionEdit = document.getElementById('alertActionEdit');
+const alertErrorEdit = document.getElementById('alertErrorEdit');
 
 // Variabili Modale Detele
 const btnActionDelete = document.getElementById('btn-delete');
@@ -73,7 +75,11 @@ async function addProduct() {
             spinnerAdd.classList.toggle('d-none');
         }
     }else{
-        // Campi input add non completi
+        alertErrorCreate.classList.toggle('d-none');
+
+        setTimeout(()=>{
+            alertErrorCreate.classList.toggle('d-none');
+        },5000);
     }
     
 }
@@ -90,7 +96,7 @@ async function showProducts() {
         json.forEach(element => {
             createTableRow(element);
         });
-        console.log(json);
+        
     } catch (error) {
         console.log(error);
     }
@@ -171,7 +177,7 @@ function createTableRow(product) {
         btnDelete.setAttribute('data-bs-toggle','modal');
         btnDelete.setAttribute('data-bs-target','#modalDelete');
         btnDelete.addEventListener('click',()=>{
-            modalDeleteLabel.innerText = `Sei sicuro di eliminare ${product.name.toUppercase()}?`
+            modalDeleteLabel.innerText = `Sei sicuro di eliminare ${product.name}?`;
             btnActionDelete.addEventListener('click',()=>{
                 deleteProduct(product._id);
             })
@@ -188,7 +194,7 @@ function createTableRow(product) {
 
 async function editProduct(product){
 
-    if (productNameEdit && productNameEdit && brandEdit && imgUrlEdit && priceEdit) {
+    if (productNameEdit.value && descriptionEdit.value && brandEdit.value && imgUrlEdit.value && priceEdit.value) {
         try {
             spinnerEdit.classList.toggle('d-none');
             let res = await fetch('https://striveschool-api.herokuapp.com/api/product/'+product._id,
@@ -216,6 +222,11 @@ async function editProduct(product){
         }
     }else{
         // Campi input edit non completi
+        alertErrorEdit.classList.toggle('d-none');
+
+        setTimeout(()=>{
+            alertErrorEdit.classList.toggle('d-none');
+        },5000);
     }
 
     
