@@ -2,22 +2,44 @@
 const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ0YjZmMDljNDM3MDAwMTkzYzM2MjMiLCJpYXQiOjE3MDg0MzkyODEsImV4cCI6MTcwOTY0ODg4MX0.OoZd_Pn5IgAjj6qyrwG_lanESNFUAYjDlQrAv9uDjFk';
 
 const results = document.getElementById('results');
-let listaProdotti;
+const searchData = document.getElementById('searchData');
+const btnSearch = document.getElementById('btnSearch');
+const spinnerSearch = document.getElementById('spinnerSearch');
+let filteredList;
 
 window.onload = showProducts();
 
 
-async function showProducts(){
+btnSearch.onclick = ()=>showProducts(searchData.value);
 
+console.log(btnSearch);
+
+async function showProducts(filter = ''){
+
+    results.innerHTML= '';
     try {
         let res = await fetch('https://striveschool-api.herokuapp.com/api/product/',
         {
             headers : {"Content-Type": "application/json", Authorization:'Bearer '+token},
         });
         let json = await res.json();
-        json.forEach(element => {
-            createCard(element);
-        });
+
+        // Controllo Input Search
+        if (!filter) {
+            
+            json.forEach(element => {
+                createCard(element);
+            });
+        } else {
+            spinnerSearch.classList.toggle('d-none');
+            filteredList = json.filter((data) => data.name.toLowerCase().includes(filter.toLowerCase()) );
+            filteredList.forEach(element => {
+                createCard(element);
+            });
+            setTimeout(() => {
+                spinnerSearch.classList.toggle('d-none');
+            }, (200));
+        }
         
     } catch (error) {
         console.log(error);
